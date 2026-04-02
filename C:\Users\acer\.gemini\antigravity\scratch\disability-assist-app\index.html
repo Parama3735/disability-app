@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AbilityBridge – All-in-One Disability Assistance App</title>
+  <meta name="description" content="AbilityBridge is a comprehensive daily-life assistance app for people with visual, hearing, mobility, cognitive, and speech disabilities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-default" id="app-body">
+
+  <!-- ───────────── ACCESSIBILITY TOOLBAR ───────────── -->
+  <div id="a11y-toolbar" role="toolbar" aria-label="Accessibility options">
+    <button class="a11y-btn" id="btn-text-size" title="Increase Text Size" aria-label="Increase text size">A+</button>
+    <button class="a11y-btn" id="btn-text-size-dec" title="Decrease Text Size" aria-label="Decrease text size">A-</button>
+    <button class="a11y-btn" id="btn-contrast" title="Toggle High Contrast" aria-label="Toggle high contrast">◑</button>
+    <button class="a11y-btn" id="btn-dyslexic" title="Dyslexia-Friendly Font" aria-label="Toggle dyslexia friendly font">Aa</button>
+    <button class="a11y-btn" id="btn-tts-toggle" title="Text-to-Speech On/Off" aria-label="Toggle text to speech">🔊</button>
+    <button class="a11y-btn" id="btn-reduce-motion" title="Reduce Motion" aria-label="Reduce motion">✦</button>
+  </div>
+
+  <!-- ───────────── SPLASH / ONBOARDING ───────────── -->
+  <div id="splash-screen" role="main">
+    <div class="splash-bg-orb orb1"></div>
+    <div class="splash-bg-orb orb2"></div>
+    <div class="splash-bg-orb orb3"></div>
+
+    <header class="splash-header">
+      <div class="logo-wrap">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="32" fill="url(#lg1)"/>
+            <circle cx="32" cy="20" r="7" fill="white" opacity="0.95"/>
+            <path d="M16 46c0-8.84 7.16-16 16-16s16 7.16 16 16" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.9"/>
+            <path d="M24 38l4 4 12-10" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#7c3aed"/>
+                <stop offset="1" stop-color="#0ea5e9"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <h1 class="app-name">AbilityBridge</h1>
+          <p class="app-tagline">Your All-in-One Daily Life Companion</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="splash-content">
+      <h2 class="section-title">Who are you today?</h2>
+      <p class="section-sub">Choose your primary accessibility need to personalise your experience. You can switch anytime.</p>
+
+      <div class="disability-grid" role="list" aria-label="Disability types">
+
+        <button class="disability-card" id="card-visual" data-type="visual" role="listitem" aria-label="Visual Impairment - Open visual accessibility tools">
+          <div class="card-icon-wrap visual-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="10" stroke="white" stroke-width="3"/>
+              <circle cx="20" cy="20" r="4" fill="white"/>
+              <path d="M4 20 C8 10 12 6 20 6 C28 6 32 10 36 20 C32 30 28 34 20 34 C12 34 8 30 4 20Z" stroke="white" stroke-width="2.5" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Visual Impairment</h3>
+          <p class="card-desc">Screen reader, high contrast, magnifier, obstacle alerts & navigation</p>
+          <span class="card-badge">👁️ Vision</span>
+        </button>
+
+        <button class="disability-card" id="card-hearing" data-type="hearing" role="listitem" aria-label="Hearing Impairment - Open hearing accessibility tools">
+          <div class="card-icon-wrap hearing-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M20 6 C11.16 6 4 13.16 4 22 C4 28.1 7.34 33.38 12.28 36.34 L14 38 L20 38 L20 32 C14.48 32 10 27.52 10 22 C10 16.48 14.48 12 20 12 C25.52 12 30 16.48 30 22 L30 25 C30 26.66 28.66 28 27 28 C25.34 28 24 26.66 24 25 L24 22 C24 19.24 21.76 17 19 17 C16.24 17 14 19.24 14 22 C14 24.76 16.24 27 19 27" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Hearing Impairment</h3>
+          <p class="card-desc">Visual alerts, live captions, vibration cues, sign language guide</p>
+          <span class="card-badge">👂 Hearing</span>
+        </button>
+
+        <button class="disability-card" id="card-mobility" data-type="mobility" role="listitem" aria-label="Mobility Impairment - Open mobility accessibility tools">
+          <div class="card-icon-wrap mobility-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="9" r="4" fill="white"/>
+              <path d="M14 16 L12 28 L18 28 L20 22 L26 26 L28 24 L22 19 L24 16 Z" fill="white" opacity="0.9"/>
+              <circle cx="14" cy="33" r="4" stroke="white" stroke-width="2.5" fill="none"/>
+              <circle cx="26" cy="33" r="4" stroke="white" stroke-width="2.5" fill="none"/>
+              <path d="M14 29 L14 33 M26 29 L26 33" stroke="white" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Mobility Impairment</h3>
+          <p class="card-desc">Accessible routes, parking finder, voice control, one-hand mode</p>
+          <span class="card-badge">♿ Mobility</span>
+        </button>
+
+        <button class="disability-card" id="card-cognitive" data-type="cognitive" role="listitem" aria-label="Cognitive Support - Open cognitive accessibility tools">
+          <div class="card-icon-wrap cognitive-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M20 6 C13 6 7 12 7 19 C7 23.5 9.3 27.4 12.8 29.8 L12 34 L28 34 L27.2 29.8 C30.7 27.4 33 23.5 33 19 C33 12 27 6 20 6Z" stroke="white" stroke-width="2.5" fill="none"/>
+              <path d="M15 19 L18 22 L25 15" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Cognitive Support</h3>
+          <p class="card-desc">Daily routines, reminders, memory aids, simplified reading assistant</p>
+          <span class="card-badge">🧠 Cognitive</span>
+        </button>
+
+        <button class="disability-card" id="card-speech" data-type="speech" role="listitem" aria-label="Speech Impairment - Open speech accessibility tools">
+          <div class="card-icon-wrap speech-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <rect x="10" y="8" width="20" height="20" rx="10" stroke="white" stroke-width="2.5" fill="none"/>
+              <path d="M20 28 L20 34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M13 34 L27 34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M7 20 C7 26 13 32 20 32 C27 32 33 26 33 20" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Speech Impairment</h3>
+          <p class="card-desc">AAC board, quick phrases, type-and-speak, symbol communication</p>
+          <span class="card-badge">🗣️ Speech</span>
+        </button>
+
+        <button class="disability-card" id="card-all" data-type="all" role="listitem" aria-label="Use all features">
+          <div class="card-icon-wrap all-gradient">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="14" stroke="white" stroke-width="2.5" fill="none"/>
+              <path d="M20 6 L20 34 M6 20 L34 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="20" cy="20" r="5" fill="white" opacity="0.8"/>
+            </svg>
+          </div>
+          <h3 class="card-title">All Features</h3>
+          <p class="card-desc">Access every tool and feature from a unified dashboard</p>
+          <span class="card-badge">⭐ Full Access</span>
+        </button>
+
+      </div>
+    </div>
+
+    <footer class="splash-footer">
+      <p>© 2026 AbilityBridge &nbsp;•&nbsp; Built with ❤️ for everyone</p>
+    </footer>
+  </div>
+
+  <!-- ───────────── DASHBOARD ───────────── -->
+  <div id="dashboard" class="hidden" role="main" aria-label="Disability assistance dashboard">
+
+    <!-- Side Nav -->
+    <nav id="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-brand">
+        <div class="nav-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="36" height="36" fill="none">
+            <circle cx="32" cy="32" r="32" fill="url(#lg2)"/>
+            <circle cx="32" cy="20" r="7" fill="white" opacity="0.95"/>
+            <path d="M16 46c0-8.84 7.16-16 16-16s16 7.16 16 16" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <defs>
+              <linearGradient id="lg2" x1="0" y1="0" x2="64" y2="64">
+                <stop stop-color="#7c3aed"/>
+                <stop offset="1" stop-color="#0ea5e9"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="nav-brand-name">AbilityBridge</span>
+      </div>
+
+      <div class="profile-block" id="profile-block">
+        <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
+        <div>
+          <p class="profile-name" id="profile-name-text">My Profile</p>
+          <p class="profile-type" id="profile-type-text">Loading…</p>
+        </div>
+      </div>
+
+      <ul class="nav-links" role="list">
+        <li><button class="nav-link active" data-panel="home" aria-current="page"><span class="nav-icon">🏠</span> Dashboard</button></li>
+        <li><button class="nav-link" data-panel="visual"><span class="nav-icon">👁️</span> Vision Tools</button></li>
+        <li><button class="nav-link" data-panel="hearing"><span class="nav-icon">👂</span> Hearing Tools</button></li>
+        <li><button class="nav-link" data-panel="mobility"><span class="nav-icon">♿</span> Mobility Tools</button></li>
+        <li><button class="nav-link" data-panel="cognitive"><span class="nav-icon">🧠</span> Cognitive Aids</button></li>
+        <li><button class="nav-link" data-panel="speech"><span class="nav-icon">🗣️</span> Speech Tools</button></li>
+        <li><button class="nav-link" data-panel="emergency"><span class="nav-icon">🆘</span> Emergency SOS</button></li>
+        <li><button class="nav-link" data-panel="settings"><span class="nav-icon">⚙️</span> Settings</button></li>
+      </ul>
+      <button id="btn-back-home" class="btn-back">← Switch Profile</button>
+    </nav>
+
+    <!-- Mobile header -->
+    <div class="mobile-header">
+      <button id="btn-hamburger" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+      <span class="mobile-app-name">AbilityBridge</span>
+      <button id="btn-sos-mobile" class="sos-btn sos-mobile" aria-label="Emergency SOS">🆘</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+
+      <!-- HOME PANEL -->
+      <section id="panel-home" class="panel active" aria-labelledby="panel-home-title">
+        <div class="panel-header">
+          <h2 id="panel-home-title" class="panel-title">Welcome Back 👋</h2>
+          <p class="panel-sub" id="home-greeting"></p>
+        </div>
+
+        <div class="quick-actions" role="region" aria-label="Quick actions">
+          <h3 class="section-heading">Quick Actions</h3>
+          <div class="quick-grid">
+            <button class="quick-card q-visual" aria-label="Open Vision Tools" onclick="switchPanel('visual')">
+              <span class="q-icon">👁️</span><span>Vision<br>Tools</span>
+            </button>
+            <button class="quick-card q-hearing" aria-label="Open Hearing Tools" onclick="switchPanel('hearing')">
+              <span class="q-icon">👂</span><span>Hearing<br>Tools</span>
+            </button>
+            <button class="quick-card q-mobility" aria-label="Open Mobility Tools" onclick="switchPanel('mobility')">
+              <span class="q-icon">♿</span><span>Mobility<br>Tools</span>
+            </button>
+            <button class="quick-card q-cognitive" aria-label="Open Cognitive Aids" onclick="switchPanel('cognitive')">
+              <span class="q-icon">🧠</span><span>Cognitive<br>Aids</span>
+            </button>
+            <button class="quick-card q-speech" aria-label="Open Speech Tools" onclick="switchPanel('speech')">
+              <span class="q-icon">🗣️</span><span>Speech<br>Tools</span>
+            </button>
+            <button class="quick-card q-sos" aria-label="Emergency SOS" onclick="switchPanel('emergency')">
+              <span class="q-icon">🆘</span><span>Emergency<br>SOS</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-widgets">
+          <div class="widget" id="widget-today">
+            <h3 class="widget-title">📅 Today's Checklist</h3>
+            <div id="today-checklist"></div>
+            <input type="text" id="checklist-input" placeholder="Add a task…" class="widget-input" aria-label="Add new task to today's checklist" />
+            <button class="widget-btn" id="btn-add-task">+ Add Task</button>
+          </div>
+          <div class="widget" id="widget-weather">
+            <h3 class="widget-title">🌤️ Accessibility Info</h3>
+            <div class="info-row"><span class="info-label">Date:</span> <span id="info-date"></span></div>
+            <div class="info-row"><span class="info-label">Time:</span> <span id="info-time"></span></div>
+            <div class="info-row"><span class="info-label">Mode:</span> <span id="info-mode"></span></div>
+            <div class="info-row"><span class="info-label">TTS:</span> <span id="info-tts">Off</span></div>
+            <div class="info-row"><span class="info-label">Contrast:</span> <span id="info-contrast">Normal</span></div>
+          </div>
+          <div class="widget" id="widget-reminders">
+            <h3 class="widget-title">⏰ Reminders</h3>
+            <div id="reminders-list"></div>
+            <div class="reminder-add-row">
+              <input type="text" id="reminder-text" placeholder="Reminder…" class="widget-input" aria-label="Reminder text" />
+              <input type="time" id="reminder-time" class="widget-input" aria-label="Reminder time" />
+              <button class="widget-btn" id="btn-add-reminder">+ Set</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISUAL PANEL -->
+      <section id="panel-visual" class="panel hidden" aria-labelledby="panel-visual-title">
+        <div class="panel-header">
+          <h2 id="panel-visual-title" class="panel-title">👁️ Vision Tools</h2>
+          <p class="panel-sub">Tools designed to assist users with visual impairments</p>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card" id="tool-tts">
+            <div class="tool-header visual-gradient"><span class="tool-icon">🔊</span></div>
+            <h3 class="tool-name">Text-to-Speech Reader</h3>
+            <p class="tool-desc">Type or paste any text and have it read aloud.</p>
+            <textarea id="tts-text" class="tool-textarea" placeholder="Type text here…" rows="4" aria-label="Text to be spoken aloud"></textarea>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-speak" aria-label="Speak text">▶ Speak</button>
+              <button class="tool-btn secondary" id="btn-stop-speak" aria-label="Stop speaking">■ Stop</button>
+              <select id="voice-select" class="tool-select" aria-label="Select voice"></select>
+            </div>
+            <label class="rate-label">Speed: <span id="rate-val">1.0</span>x</label>
+            <input type="range" id="tts-rate" min="0.5" max="2" step="0.1" value="1" class="tool-range" aria-label="Speech rate" />
+          </div>
+
+          <div class="tool-card" id="tool-magnifier">
+            <div class="tool-header visual-gradient"><span class="tool-icon">🔍</span></div>
+            <h3 class="tool-name">Screen Magnifier</h3>
+            <p class="tool-desc">Zoom into any part of text or content on screen.</p>
+            <div id="magnifier-preview" class="magnifier-box" aria-label="Magnified text preview">Magnified text appears here…</div>
+            <div class="tool-controls">
+              <label>Zoom level: <strong id="zoom-val">2x</strong></label>
+              <input type="range" min="1" max="8" value="2" step="0.5" id="zoom-range" class="tool-range" aria-label="Zoom level" />
+            </div>
+            <input type="text" id="magnifier-input" class="tool-input" placeholder="Type text to magnify…" aria-label="Type text to magnify" />
+          </div>
+
+          <div class="tool-card" id="tool-color-contrast">
+            <div class="tool-header visual-gradient"><span class="tool-icon">◑</span></div>
+            <h3 class="tool-name">High-Contrast Themes</h3>
+            <p class="tool-desc">Switch between visual contrast modes for better readability.</p>
+            <div class="contrast-btns">
+              <button class="contrast-btn" data-theme="theme-default" aria-label="Default theme">Default</button>
+              <button class="contrast-btn" data-theme="theme-high-contrast" aria-label="High contrast dark theme">High Contrast</button>
+              <button class="contrast-btn" data-theme="theme-yellow-black" aria-label="Yellow on black theme">Yellow/Black</button>
+              <button class="contrast-btn" data-theme="theme-light" aria-label="Light theme">Light Mode</button>
+              <button class="contrast-btn" data-theme="theme-green-black" aria-label="Green on black theme">Green/Black</button>
+            </div>
+          </div>
+
+          <div class="tool-card" id="tool-object-detect">
+            <div class="tool-header visual-gradient"><span class="tool-icon">📷</span></div>
+            <h3 class="tool-name">Object & Text Describer</h3>
+            <p class="tool-desc">Describe what is around you using your camera (simulated).</p>
+            <div id="camera-feed" class="camera-box" aria-live="polite" aria-label="Camera description output">
+              <div class="camera-placeholder">
+                <p>📸 Camera input simulated</p>
+                <p id="cam-result" style="font-size:0.9rem;margin-top:8px;color:var(--accent-2)">Press Describe to identify surroundings</p>
+              </div>
+            </div>
+            <button class="tool-btn" id="btn-describe" aria-label="Describe surroundings">🔍 Describe Surroundings</button>
+          </div>
+
+          <div class="tool-card" id="tool-nav-assist">
+            <div class="tool-header visual-gradient"><span class="tool-icon">🧭</span></div>
+            <h3 class="tool-name">Voice Navigation</h3>
+            <p class="tool-desc">Get step-by-step spoken navigation instructions.</p>
+            <input type="text" id="nav-from" class="tool-input" placeholder="From: Your current location" aria-label="Starting location" />
+            <input type="text" id="nav-to" class="tool-input" placeholder="To: Destination" aria-label="Destination" style="margin-top:8px" />
+            <button class="tool-btn" id="btn-navigate" aria-label="Start navigation">🎙️ Start Voice Navigation</button>
+            <div id="nav-output" class="nav-output" aria-live="polite"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- HEARING PANEL -->
+      <section id="panel-hearing" class="panel hidden" aria-labelledby="panel-hearing-title">
+        <div class="panel-header">
+          <h2 id="panel-hearing-title" class="panel-title">👂 Hearing Tools</h2>
+          <p class="panel-sub">Visual and tactile alternatives for those with hearing difficulties</p>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card" id="tool-captions">
+            <div class="tool-header hearing-gradient"><span class="tool-icon">📝</span></div>
+            <h3 class="tool-name">Live Caption Viewer</h3>
+            <p class="tool-desc">Converts speech from your microphone into real-time captions.</p>
+            <div id="caption-display" class="caption-box" aria-live="polite" aria-label="Live captions">Captions will appear here…</div>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-start-caption" aria-label="Start captioning">🎤 Start Captioning</button>
+              <button class="tool-btn secondary" id="btn-stop-caption" aria-label="Stop captioning">■ Stop</button>
+            </div>
+            <button class="tool-btn secondary" id="btn-copy-captions" style="margin-top:8px;" aria-label="Copy captions">📋 Copy Transcript</button>
+          </div>
+
+          <div class="tool-card" id="tool-visual-alert">
+            <div class="tool-header hearing-gradient"><span class="tool-icon">🚨</span></div>
+            <h3 class="tool-name">Visual Sound Alerts</h3>
+            <p class="tool-desc">Flashes screen when ambient sounds like doorbell or alarm are detected.</p>
+            <div id="alert-display" class="alert-box" aria-live="assertive"></div>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-start-alert" aria-label="Start sound monitoring">👂 Start Monitoring</button>
+              <button class="tool-btn secondary" id="btn-stop-alert" aria-label="Stop sound monitoring">■ Stop</button>
+            </div>
+            <div class="alert-sounds">
+              <label><input type="checkbox" checked id="al-doorbell"> Doorbell</label>
+              <label><input type="checkbox" checked id="al-alarm"> Fire Alarm</label>
+              <label><input type="checkbox" id="al-phone"> Phone Ring</label>
+              <label><input type="checkbox" id="al-name"> Name Called</label>
+            </div>
+          </div>
+
+          <div class="tool-card" id="tool-sign-guide">
+            <div class="tool-header hearing-gradient"><span class="tool-icon">🤟</span></div>
+            <h3 class="tool-name">Sign Language Guide</h3>
+            <p class="tool-desc">Quick reference for common ASL signs and phrases.</p>
+            <div class="sign-search-bar">
+              <input type="text" id="sign-search" class="tool-input" placeholder="Search sign (e.g. Hello, Thank You)…" aria-label="Search sign language" />
+            </div>
+            <div id="sign-grid" class="sign-grid"></div>
+          </div>
+
+          <div class="tool-card" id="tool-vibration">
+            <div class="tool-header hearing-gradient"><span class="tool-icon">📳</span></div>
+            <h3 class="tool-name">Vibration Communicator</h3>
+            <p class="tool-desc">Use vibration patterns to communicate basic messages.</p>
+            <div class="vibration-patterns">
+              <button class="vib-btn" data-msg="Yes" aria-label="Vibrate for Yes">✅ Yes</button>
+              <button class="vib-btn" data-msg="No" aria-label="Vibrate for No">❌ No</button>
+              <button class="vib-btn" data-msg="Help" aria-label="Vibrate for Help">🆘 Help</button>
+              <button class="vib-btn" data-msg="Wait" aria-label="Vibrate for Wait">⏳ Wait</button>
+              <button class="vib-btn" data-msg="OK" aria-label="Vibrate for OK">👍 OK</button>
+              <button class="vib-btn" data-msg="Goodbye" aria-label="Vibrate for Goodbye">👋 Bye</button>
+            </div>
+            <p id="vib-feedback" class="vib-feedback" aria-live="polite"></p>
+          </div>
+
+          <div class="tool-card" id="tool-msg-board">
+            <div class="tool-header hearing-gradient"><span class="tool-icon">💬</span></div>
+            <h3 class="tool-name">Show-and-Share Board</h3>
+            <p class="tool-desc">Display large text to show to others when communicating.</p>
+            <input type="text" id="show-text-input" class="tool-input" placeholder="Type your message…" aria-label="Message to display" />
+            <button class="tool-btn" id="btn-show-text" aria-label="Display message">📺 Show Big Text</button>
+            <div id="show-text-display" class="big-text-display" aria-live="polite"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MOBILITY PANEL -->
+      <section id="panel-mobility" class="panel hidden" aria-labelledby="panel-mobility-title">
+        <div class="panel-header">
+          <h2 id="panel-mobility-title" class="panel-title">♿ Mobility Tools</h2>
+          <p class="panel-sub">Assistance for people with physical mobility challenges</p>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card" id="tool-route-finder">
+            <div class="tool-header mobility-gradient"><span class="tool-icon">🗺️</span></div>
+            <h3 class="tool-name">Accessible Route Finder</h3>
+            <p class="tool-desc">Find wheelchair-accessible paths and avoid stairs/steep slopes.</p>
+            <input type="text" id="route-from" class="tool-input" placeholder="From: Your location" aria-label="Route starting point" />
+            <input type="text" id="route-to" class="tool-input" placeholder="To: Destination" style="margin-top:8px" aria-label="Route destination" />
+            <div class="route-prefs">
+              <label><input type="checkbox" id="pref-elevator" checked> Prefer elevators</label>
+              <label><input type="checkbox" id="pref-ramp" checked> Use ramps</label>
+              <label><input type="checkbox" id="pref-step-free"> Step-free only</label>
+            </div>
+            <button class="tool-btn" id="btn-find-route" aria-label="Find accessible route">🔍 Find Route</button>
+            <div id="route-result" class="route-result" aria-live="polite"></div>
+          </div>
+
+          <div class="tool-card" id="tool-parking">
+            <div class="tool-header mobility-gradient"><span class="tool-icon">🅿️</span></div>
+            <h3 class="tool-name">Accessible Parking Finder</h3>
+            <p class="tool-desc">Locate nearby accessible parking spots and facilities.</p>
+            <div id="parking-map" class="map-placeholder" aria-label="Parking map">
+              <span>🗺️ Tap to find parking near you</span>
+            </div>
+            <button class="tool-btn" id="btn-find-parking" aria-label="Find parking">📍 Find Nearby Parking</button>
+            <div id="parking-results" class="parking-results" aria-live="polite"></div>
+          </div>
+
+          <div class="tool-card" id="tool-voice-control">
+            <div class="tool-header mobility-gradient"><span class="tool-icon">🎙️</span></div>
+            <h3 class="tool-name">Voice Control Panel</h3>
+            <p class="tool-desc">Navigate the app hands-free using voice commands.</p>
+            <div id="voice-cmd-display" class="voice-cmd-box" aria-live="polite">Say a command…</div>
+            <button class="tool-btn" id="btn-voice-cmd" aria-label="Start voice command">🎤 Start Listening</button>
+            <div class="voice-commands">
+              <p class="voice-hint">Try saying:</p>
+              <div class="voice-chips">
+                <span class="voice-chip">"Go to vision tools"</span>
+                <span class="voice-chip">"Open emergency"</span>
+                <span class="voice-chip">"Read page"</span>
+                <span class="voice-chip">"Increase text"</span>
+                <span class="voice-chip">"High contrast"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-card" id="tool-switch-access">
+            <div class="tool-header mobility-gradient"><span class="tool-icon">⌨️</span></div>
+            <h3 class="tool-name">Switch / Keyboard Access</h3>
+            <p class="tool-desc">Activate full keyboard-only and switch access navigation mode.</p>
+            <button class="tool-btn" id="btn-switch-mode" aria-label="Enable switch access mode">Enable Switch Access Mode</button>
+            <p class="switch-info">When enabled, use <kbd>Tab</kbd> to navigate, <kbd>Enter</kbd> to select, and <kbd>Space</kbd> to activate items.</p>
+            <div id="switch-status" class="switch-status" aria-live="polite">Switch mode: OFF</div>
+          </div>
+
+          <div class="tool-card" id="tool-sos-mob">
+            <div class="tool-header mobility-gradient"><span class="tool-icon">🩺</span></div>
+            <h3 class="tool-name">Medical ID Card</h3>
+            <p class="tool-desc">Store and display your medical information instantly.</p>
+            <div id="medical-card" class="medical-card">
+              <p><strong>Name:</strong> <span id="med-name">—</span></p>
+              <p><strong>Condition:</strong> <span id="med-cond">—</span></p>
+              <p><strong>Emergency Contact:</strong> <span id="med-contact">—</span></p>
+              <p><strong>Medications:</strong> <span id="med-meds">—</span></p>
+              <p><strong>Blood Type:</strong> <span id="med-blood">—</span></p>
+            </div>
+            <button class="tool-btn" id="btn-edit-medical" aria-label="Edit medical ID">✏️ Edit Medical ID</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COGNITIVE PANEL -->
+      <section id="panel-cognitive" class="panel hidden" aria-labelledby="panel-cognitive-title">
+        <div class="panel-header">
+          <h2 id="panel-cognitive-title" class="panel-title">🧠 Cognitive Aids</h2>
+          <p class="panel-sub">Memory, routine and comprehension support tools</p>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card" id="tool-routine">
+            <div class="tool-header cognitive-gradient"><span class="tool-icon">📋</span></div>
+            <h3 class="tool-name">Daily Routine Manager</h3>
+            <p class="tool-desc">Build and follow step-by-step daily routines with visual cues.</p>
+            <div id="routine-list" class="routine-list" role="list" aria-label="Daily routine steps"></div>
+            <input type="text" id="routine-step-input" class="tool-input" placeholder="Add a routine step…" aria-label="New routine step" />
+            <button class="tool-btn" id="btn-add-routine" aria-label="Add routine step">+ Add Step</button>
+            <button class="tool-btn secondary" id="btn-reset-routine" aria-label="Reset routine">↺ Reset Day</button>
+          </div>
+
+          <div class="tool-card" id="tool-memory-aid">
+            <div class="tool-header cognitive-gradient"><span class="tool-icon">🗂️</span></div>
+            <h3 class="tool-name">Memory Aid Cards</h3>
+            <p class="tool-desc">Create visual memory cards for important information.</p>
+            <div id="memory-cards" class="memory-cards"></div>
+            <input type="text" id="mem-title" class="tool-input" placeholder="Card title…" aria-label="Memory card title" />
+            <textarea id="mem-content" class="tool-textarea" rows="2" placeholder="Card content…" aria-label="Memory card content"></textarea>
+            <button class="tool-btn" id="btn-add-mem" aria-label="Add memory card">+ Add Card</button>
+          </div>
+
+          <div class="tool-card" id="tool-simplify">
+            <div class="tool-header cognitive-gradient"><span class="tool-icon">📖</span></div>
+            <h3 class="tool-name">Text Simplifier</h3>
+            <p class="tool-desc">Paste complex text and get a simplified, easy-to-read version.</p>
+            <textarea id="complex-text" class="tool-textarea" rows="4" placeholder="Paste complex text here…" aria-label="Complex text to simplify"></textarea>
+            <button class="tool-btn" id="btn-simplify" aria-label="Simplify text">✨ Simplify Text</button>
+            <div id="simplified-output" class="simplified-output" aria-live="polite"></div>
+          </div>
+
+          <div class="tool-card" id="tool-focus">
+            <div class="tool-header cognitive-gradient"><span class="tool-icon">🎯</span></div>
+            <h3 class="tool-name">Focus Timer (Pomodoro)</h3>
+            <p class="tool-desc">Stay on task with a structured focus-break cycle timer.</p>
+            <div id="timer-display" class="timer-display" aria-live="polite" aria-label="Focus timer display">25:00</div>
+            <p id="timer-label" class="timer-label">Focus Session</p>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-timer-start" aria-label="Start focus timer">▶ Start</button>
+              <button class="tool-btn secondary" id="btn-timer-pause" aria-label="Pause focus timer">⏸ Pause</button>
+              <button class="tool-btn secondary" id="btn-timer-reset" aria-label="Reset focus timer">↺ Reset</button>
+            </div>
+            <div class="timer-presets">
+              <button class="preset-btn" data-time="25" aria-label="25 minute focus session">25 min</button>
+              <button class="preset-btn" data-time="15" aria-label="15 minute session">15 min</button>
+              <button class="preset-btn" data-time="5" aria-label="5 minute break">5 min break</button>
+            </div>
+          </div>
+
+          <div class="tool-card" id="tool-mood">
+            <div class="tool-header cognitive-gradient"><span class="tool-icon">😊</span></div>
+            <h3 class="tool-name">Mood & Wellbeing Tracker</h3>
+            <p class="tool-desc">Log your daily mood and see patterns over time.</p>
+            <div class="mood-buttons">
+              <button class="mood-btn" data-mood="great" aria-label="Feeling great">😄 Great</button>
+              <button class="mood-btn" data-mood="good" aria-label="Feeling good">🙂 Good</button>
+              <button class="mood-btn" data-mood="okay" aria-label="Feeling okay">😐 Okay</button>
+              <button class="mood-btn" data-mood="low" aria-label="Feeling low">😔 Low</button>
+              <button class="mood-btn" data-mood="bad" aria-label="Feeling bad">😢 Bad</button>
+            </div>
+            <div id="mood-log" class="mood-log" aria-live="polite"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SPEECH PANEL -->
+      <section id="panel-speech" class="panel hidden" aria-labelledby="panel-speech-title">
+        <div class="panel-header">
+          <h2 id="panel-speech-title" class="panel-title">🗣️ Speech Tools</h2>
+          <p class="panel-sub">Augmentative and Alternative Communication (AAC) tools</p>
+        </div>
+        <div class="tools-grid">
+
+          <div class="tool-card wide-card" id="tool-aac">
+            <div class="tool-header speech-gradient"><span class="tool-icon">🃏</span></div>
+            <h3 class="tool-name">AAC Symbol Board</h3>
+            <p class="tool-desc">Tap symbols to build phrases and have them spoken aloud.</p>
+            <div id="aac-sentence" class="aac-sentence" aria-live="polite" aria-label="Composed sentence">Tap symbols below to compose a message…</div>
+            <div class="aac-board" id="aac-board" role="list" aria-label="AAC symbol board"></div>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-speak-aac" aria-label="Speak composed sentence">▶ Speak</button>
+              <button class="tool-btn secondary" id="btn-clear-aac" aria-label="Clear sentence">✕ Clear</button>
+              <select id="aac-category" class="tool-select" aria-label="Select AAC category"></select>
+            </div>
+          </div>
+
+          <div class="tool-card" id="tool-quick-phrases">
+            <div class="tool-header speech-gradient"><span class="tool-icon">⚡</span></div>
+            <h3 class="tool-name">Quick Phrases</h3>
+            <p class="tool-desc">One-tap commonly used phrases spoken instantly.</p>
+            <div id="quick-phrases-list" class="quick-phrases-list" role="list" aria-label="Quick phrases"></div>
+            <input type="text" id="custom-phrase-input" class="tool-input" placeholder="Add your own phrase…" aria-label="Custom phrase" />
+            <button class="tool-btn" id="btn-add-phrase" aria-label="Add custom phrase">+ Add Phrase</button>
+          </div>
+
+          <div class="tool-card" id="tool-type-speak">
+            <div class="tool-header speech-gradient"><span class="tool-icon">⌨️</span></div>
+            <h3 class="tool-name">Type & Speak</h3>
+            <p class="tool-desc">Type any message and press speak for instant voice output.</p>
+            <textarea id="type-speak-text" class="tool-textarea" rows="4" placeholder="Type what you want to say…" aria-label="Text to speak"></textarea>
+            <div class="tool-controls">
+              <button class="tool-btn" id="btn-type-speak" aria-label="Speak typed text">▶ Speak Now</button>
+              <button class="tool-btn secondary" id="btn-clear-type-speak" aria-label="Clear text">✕ Clear</button>
+            </div>
+            <div id="type-speak-history" class="type-speak-history" aria-label="Recent phrases"></div>
+          </div>
+
+          <div class="tool-card" id="tool-word-predict">
+            <div class="tool-header speech-gradient"><span class="tool-icon">💡</span></div>
+            <h3 class="tool-name">Word Prediction</h3>
+            <p class="tool-desc">Start typing and get smart word suggestions to communicate faster.</p>
+            <input type="text" id="word-predict-input" class="tool-input" placeholder="Start typing…" autocomplete="off" aria-label="Word prediction input" />
+            <div id="word-suggestions" class="word-suggestions" aria-live="polite" aria-label="Word suggestions"></div>
+            <div id="predicted-sentence" class="predicted-sentence" aria-live="polite"></div>
+            <button class="tool-btn" id="btn-speak-predicted" aria-label="Speak predicted sentence">▶ Speak Sentence</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EMERGENCY PANEL -->
+      <section id="panel-emergency" class="panel hidden" aria-labelledby="panel-emergency-title">
+        <div class="panel-header">
+          <h2 id="panel-emergency-title" class="panel-title">🆘 Emergency SOS</h2>
+          <p class="panel-sub">Quick access to emergency services and contacts</p>
+        </div>
+        <div class="emergency-layout">
+          <div class="sos-main">
+            <button id="btn-sos-main" class="sos-btn-main" aria-label="Activate emergency SOS">
+              <span class="sos-icon">🆘</span>
+              <span>EMERGENCY SOS</span>
+              <span class="sos-sub">Hold 3 seconds to activate</span>
+            </button>
+            <p id="sos-countdown" class="sos-countdown" aria-live="assertive"></p>
+          </div>
+          <div class="emergency-contacts-section">
+            <h3 class="section-heading">Emergency Contacts</h3>
+            <div id="emergency-contacts" class="emergency-contacts-list"></div>
+            <div class="add-contact-form">
+              <input type="text" id="ec-name" class="tool-input" placeholder="Contact name" aria-label="Emergency contact name" />
+              <input type="tel" id="ec-phone" class="tool-input" placeholder="Phone number" aria-label="Emergency contact phone" style="margin-top:6px" />
+              <button class="tool-btn" id="btn-add-ec" style="margin-top:6px" aria-label="Add emergency contact">+ Add Contact</button>
+            </div>
+          </div>
+          <div class="quick-call-section">
+            <h3 class="section-heading">Universal Emergency Numbers</h3>
+            <div class="emergency-numbers">
+              <button class="emg-num-btn" data-number="112" aria-label="Call 112 - Global Emergency">📞 112 Global</button>
+              <button class="emg-num-btn" data-number="911" aria-label="Call 911 - USA Emergency">📞 911 USA</button>
+              <button class="emg-num-btn" data-number="999" aria-label="Call 999 - UK Emergency">📞 999 UK</button>
+              <button class="emg-num-btn" data-number="100" aria-label="Call 100 - India Police">📞 100 Police</button>
+              <button class="emg-num-btn" data-number="108" aria-label="Call 108 - India Ambulance">📞 108 Ambulance</button>
+              <button class="emg-num-btn" data-number="101" aria-label="Call 101 - India Fire">📞 101 Fire</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS PANEL -->
+      <section id="panel-settings" class="panel hidden" aria-labelledby="panel-settings-title">
+        <div class="panel-header">
+          <h2 id="panel-settings-title" class="panel-title">⚙️ Settings</h2>
+          <p class="panel-sub">Customise your AbilityBridge experience</p>
+        </div>
+        <div class="settings-grid">
+
+          <div class="settings-card">
+            <h3 class="settings-section-title">🎨 Display</h3>
+            <div class="setting-row">
+              <label for="set-font-size">Text Size</label>
+              <select id="set-font-size" aria-label="Select text size">
+                <option value="14">Small</option>
+                <option value="16" selected>Medium</option>
+                <option value="20">Large</option>
+                <option value="24">X-Large</option>
+              </select>
+            </div>
+            <div class="setting-row">
+              <label for="set-theme">Colour Theme</label>
+              <select id="set-theme" aria-label="Select colour theme">
+                <option value="theme-default">Default (Dark)</option>
+                <option value="theme-high-contrast">High Contrast</option>
+                <option value="theme-yellow-black">Yellow / Black</option>
+                <option value="theme-light">Light Mode</option>
+                <option value="theme-green-black">Green / Black</option>
+              </select>
+            </div>
+            <div class="setting-row">
+              <label for="set-motion">Reduce Motion</label>
+              <input type="checkbox" id="set-motion" role="switch" aria-label="Reduce motion" />
+            </div>
+            <div class="setting-row">
+              <label for="set-dyslexic">Dyslexia Font</label>
+              <input type="checkbox" id="set-dyslexic" role="switch" aria-label="Dyslexia friendly font" />
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="settings-section-title">🔊 Audio</h3>
+            <div class="setting-row">
+              <label for="set-tts">Text-to-Speech</label>
+              <input type="checkbox" id="set-tts" role="switch" aria-label="Enable text to speech" />
+            </div>
+            <div class="setting-row">
+              <label for="set-tts-rate">Speech Speed</label>
+              <input type="range" id="set-tts-rate" min="0.5" max="2" step="0.1" value="1" aria-label="Speech speed" />
+            </div>
+            <div class="setting-row">
+              <label for="set-tts-pitch">Speech Pitch</label>
+              <input type="range" id="set-tts-pitch" min="0.1" max="2" step="0.1" value="1" aria-label="Speech pitch" />
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="settings-section-title">👤 Profile</h3>
+            <div class="setting-row">
+              <label for="set-name">Your Name</label>
+              <input type="text" id="set-name" class="tool-input" placeholder="Enter your name" aria-label="Your name" />
+            </div>
+            <div class="setting-row">
+              <label for="set-disability">Primary Disability</label>
+              <select id="set-disability" aria-label="Primary disability type">
+                <option value="visual">Visual Impairment</option>
+                <option value="hearing">Hearing Impairment</option>
+                <option value="mobility">Mobility Impairment</option>
+                <option value="cognitive">Cognitive Support</option>
+                <option value="speech">Speech Impairment</option>
+                <option value="all">All / Multiple</option>
+              </select>
+            </div>
+            <button class="tool-btn" id="btn-save-settings" aria-label="Save settings">💾 Save Settings</button>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="settings-section-title">ℹ️ About</h3>
+            <p style="color:var(--text-2);font-size:0.9rem;line-height:1.6">
+              <strong>AbilityBridge v1.0</strong><br/>
+              An all-in-one daily life companion for people with disabilities.<br/><br/>
+              Designed with accessibility at its core, this app supports WCAG 2.1 AA standards.
+              Every feature is keyboard-navigable, screen-reader friendly, and configurable.
+            </p>
+            <button class="tool-btn secondary" id="btn-clear-data" style="margin-top:12px" aria-label="Clear all saved data">🗑️ Clear All Data</button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Medical ID Modal -->
+  <div id="medical-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <h3 id="modal-title">Edit Medical ID</h3>
+      <input type="text" id="modal-name" class="tool-input" placeholder="Full Name" aria-label="Full name" />
+      <input type="text" id="modal-cond" class="tool-input" placeholder="Medical Condition" style="margin-top:8px" aria-label="Medical condition" />
+      <input type="text" id="modal-contact" class="tool-input" placeholder="Emergency Contact (Name & Phone)" style="margin-top:8px" aria-label="Emergency contact" />
+      <input type="text" id="modal-meds" class="tool-input" placeholder="Medications" style="margin-top:8px" aria-label="Medications" />
+      <input type="text" id="modal-blood" class="tool-input" placeholder="Blood Type (e.g. O+)" style="margin-top:8px" aria-label="Blood type" />
+      <div class="modal-btns">
+        <button class="tool-btn" id="btn-save-medical" aria-label="Save medical ID">💾 Save</button>
+        <button class="tool-btn secondary" id="btn-close-modal" aria-label="Close modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Text Overlay -->
+  <div id="big-text-overlay" class="big-text-overlay hidden" role="dialog" aria-modal="true" aria-label="Large text display">
+    <div id="big-text-content" class="big-text-content"></div>
+    <button id="btn-close-big-text" class="close-big-text" aria-label="Close large text display">✕ Close</button>
+  </div>
+
+  <!-- Live Clock overlay -->
+  <div id="live-clock" class="live-clock" aria-live="off" aria-label="Current time">00:00</div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
